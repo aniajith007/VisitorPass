@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/aniajith007.github.io/Visitorpass/static/css/main.e6c13ad2.css",
-    "main.js": "/aniajith007.github.io/Visitorpass/static/js/main.ea2a160a.js",
-    "static/js/787.fca55707.chunk.js": "/aniajith007.github.io/Visitorpass/static/js/787.fca55707.chunk.js",
-    "index.html": "/aniajith007.github.io/Visitorpass/index.html",
-    "main.e6c13ad2.css.map": "/aniajith007.github.io/Visitorpass/static/css/main.e6c13ad2.css.map",
-    "main.ea2a160a.js.map": "/aniajith007.github.io/Visitorpass/static/js/main.ea2a160a.js.map",
-    "787.fca55707.chunk.js.map": "/aniajith007.github.io/Visitorpass/static/js/787.fca55707.chunk.js.map"
+    "main.css": "/VisitorPass/static/css/main.e6c13ad2.css",
+    "main.js": "/VisitorPass/static/js/main.a20a80be.js",
+    "static/js/787.fca55707.chunk.js": "/VisitorPass/static/js/787.fca55707.chunk.js",
+    "index.html": "/VisitorPass/index.html",
+    "main.e6c13ad2.css.map": "/VisitorPass/static/css/main.e6c13ad2.css.map",
+    "main.a20a80be.js.map": "/VisitorPass/static/js/main.a20a80be.js.map",
+    "787.fca55707.chunk.js.map": "/VisitorPass/static/js/787.fca55707.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.ea2a160a.js"
+    "static/js/main.a20a80be.js"
   ]
 }
