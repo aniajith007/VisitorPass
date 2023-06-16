@@ -1,3 +1,4 @@
+
 export const carddata = [
   { heading: "OutpassIN", imgsrc: "", navigation: "", pending: 10 },
   { heading: "OutpassOUT", imgsrc: "", navigation: "", pending: 20 },
@@ -9,3 +10,4 @@ export const carddata = [
   },
   { heading: "VisitorOUT", imgsrc: "", navigation: "", pending: 15 },
 ];
+export const WrongRouteText = "There is no Routes like this";

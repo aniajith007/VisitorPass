@@ -2,7 +2,15 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import { Avatar, Button, Grid, Menu, MenuItem, Tooltip } from "@mui/material";
+import {
+  Avatar,
+  Button,
+  CircularProgress,
+  Grid,
+  Menu,
+  MenuItem,
+  Tooltip,
+} from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
@@ -25,14 +33,18 @@ import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import HomeIcon from "@mui/icons-material/Home";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { carddata } from "../../Raw/Raw";
+import { useVisitorContext } from "../../Hooks/Context";
+import SnackBarBottom from '../../Pages/LogoutPage/LogoutBottombar'
 
 const drawerWidth = 240;
 
 function MainLayout(props) {
-  const username = "ak";
+  const { user, logoutchange } = useVisitorContext();
+  const username = user?.user;
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-
+  const [snackbaropen,setSnackbaropen] = React.useState(false)
+  const [loading, setLoading] = React.useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const path = location.pathname;
@@ -40,6 +52,20 @@ function MainLayout(props) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  const handleLogout = () => {    
+    setLoading(true);
+    setTimeout(() => {
+      logoutchange();
+      setSnackbaropen(true)
+      setLoading(false);
+      navigate('/')
+    }, 3000);
+  };
+
+  const handleCloseSnackBottom = ()=>{
+
+  }
 
   const drawer = (
     <div>
@@ -58,7 +84,10 @@ function MainLayout(props) {
       </Toolbar>
       <Divider />
       <ListItem key={"Home"} disablePadding>
-        <ListItemButton sx={{ backgroundColor:path==='/main'&&"gainsboro" }}onClick={() => navigate("/main")}>
+        <ListItemButton
+          sx={{ backgroundColor: path === "/main" && "gainsboro" }}
+          onClick={() => navigate("/main")}
+        >
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>
@@ -79,9 +108,13 @@ function MainLayout(props) {
               </ListItemButton>
             </ListItem>
           ) : (
-            <>              
+            <>
               <ListItem key={data.heading} disablePadding>
-                <ListItemButton sx={{ backgroundColor:path===data.navigation&&"gainsboro" }}>
+                <ListItemButton
+                  sx={{
+                    backgroundColor: path === data.navigation && "gainsboro",
+                  }}
+                >
                   <ListItemIcon>
                     {index % 2 === 0 ? (
                       <ArrowCircleLeftIcon />
@@ -97,27 +130,10 @@ function MainLayout(props) {
         )}
       </List>
       <Divider />
-      {/* <List>
-        {["Visitor In", "Visitor Out"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton sx={{backgroundColor:'gainsboro'}}>
-              <ListItemIcon>
-                {index % 2 === 0 ? (
-                  <ArrowCircleLeftIcon />
-                ) : (
-                  <ArrowCircleRightIcon />
-                )}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List> */}
-      <Divider />
       <ListItem disablePadding>
-        <ListItemButton>
+        <ListItemButton disabled={loading} onClick={handleLogout}>
           <ListItemIcon>
-            <LogoutIcon />
+            {loading ? <CircularProgress sx={{ p: 1 }} /> : <LogoutIcon />}
           </ListItemIcon>
           <ListItemText primary={"Logout"} />
         </ListItemButton>
@@ -217,6 +233,7 @@ function MainLayout(props) {
         <Toolbar />
         <Outlet />
       </Box>
+      {loading&&<SnackBarBottom open={snackbaropen} handleClose={handleCloseSnackBottom} message={"Successfully Logged out! "+user.user}/>}
     </Box>
   );
 }

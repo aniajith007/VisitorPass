@@ -3,6 +3,7 @@ import React from "react";
 import DashCard from "../../Components/DashCard";
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import { carddata } from "../../Raw/Raw";
+import { useVisitorContext } from "../../Hooks/Context";
 
 function Dash() {
   // const carddata = [
@@ -11,6 +12,9 @@ function Dash() {
   //   { heading: "VisitorIN", imgsrc: "",navigation:'/main/visitor-portal',pending:30 },
   //   { heading: "VisitorOUT", imgsrc: "",navigation:'',pending:15},
   // ];
+
+  console.log("userdata in dashboard",useVisitorContext().user)
+
   return (
     <Box minHeight={'500'} sx={{ height: '100%' }}>
       <Grid m={2}>
